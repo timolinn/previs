@@ -1,0 +1,24 @@
+{
+    "name": "timolinn/golum",
+    "description": "Food ordering app for Golumino Digital Agency",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Timothy Onyiuke",
+            "email": "timothyonyiuke@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/database": "^5.6",
+        "illuminate/container": "^5.6",
+        "illuminate/routing": "^5.6",
+        "doctrine/migrations": "^1.6",
+        "fuelphp/validation": "^0.1.1",
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Golum\\": "src/"
+        }
+    }
+}
