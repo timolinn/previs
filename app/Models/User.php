@@ -78,14 +78,14 @@ class User
      *
      * @return Collection
      */
-    public function orders():
+    public function orders(): array
     {
         $orders = Order::getAllMyOrders();
 
         return $orders;
     }
 
-    public function myCart(): Collection
+    public function myCart(): array
     {
         return Cart::getContent();
     }
