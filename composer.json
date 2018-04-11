@@ -15,7 +15,8 @@
         "doctrine/migrations": "^1.6",
         "fuelphp/validation": "^0.1.1",
         "vlucas/phpdotenv": "^2.4",
-        "pusher/pusher-php-server": "^3.0"
+        "pusher/pusher-php-server": "^3.0",
+        "phpoffice/phpspreadsheet": "^1.2"
     },
     "autoload": {
         "psr-4": {

@@ -2,6 +2,7 @@
 
 
 use Phinx\Migration\AbstractMigration;
+use Phinx\Db\Adapter\MysqlAdapter;
 
 class CreateItemsTable extends AbstractMigration
 {
@@ -28,6 +29,18 @@ class CreateItemsTable extends AbstractMigration
      */
     public function change()
     {
+        $items  $this->table('items');
+
+        $items->addColumn('item_name', 'string', ['limit' => 255])
+                ->addColumn('number_in_stock', 'integer')
+                ->addColumn('item_category', 'string', ['null' => true])
+                ->addColumn('item_price', 'string')
+                ->addColumn('description', 'text', ['null' => true])
+                ->addColumn('image_path', 'string', ['null' => true])
+                ->addColumn('isAvaliable', 'integer', ['limit' => MysqlAdapter::INT_TINY])
+                ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+                ->addColumn('updated_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+                ->create();
 
     }
 }
