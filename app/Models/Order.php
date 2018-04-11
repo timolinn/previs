@@ -1,6 +1,6 @@
 <?php
 
-namespace Golum\Models;
+namespace PDC\Models;
 
 class Order
 {
