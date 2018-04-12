@@ -29,7 +29,7 @@ class CreateItemsTable extends AbstractMigration
      */
     public function change()
     {
-        $items  $this->table('items');
+        $items = $this->table('items');
 
         $items->addColumn('item_name', 'string', ['limit' => 255])
                 ->addColumn('number_in_stock', 'integer')

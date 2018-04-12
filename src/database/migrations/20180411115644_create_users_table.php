@@ -33,12 +33,12 @@ class CreateUsersTable extends AbstractMigration
         $users = $this->table('users');
 
         // Add columns
-        $users->addColumn('first_name', 'string', ['limit' => '60'])
-              ->addColumn('last_name', 'string', ['limit' => '60'])
-              ->addColumn('password', 'string', ['limit' => '100'])
-              ->addColumn('user_name', 'string', ['limit' => '60'])
-              ->addColumn('email', 'string', ['limit' => '100'])
-              ->addColumn('phone_number', 'string', ['limit' => '22'])
+        $users->addColumn('first_name', 'string', ['limit' => 60])
+              ->addColumn('last_name', 'string', ['limit' => 60])
+              ->addColumn('password', 'string', ['limit' => 100])
+              ->addColumn('user_name', 'string', ['limit' => 60])
+              ->addColumn('email', 'string', ['limit' => 100])
+              ->addColumn('phone_number', 'string', ['limit' => 22])
               ->addColumn('isBanned', 'integer', ['limit' => MysqlAdapter::INT_TINY, 'default' => 0])
               ->addColumn('role_id', 'integer')
               ->addColumn('recurrent_order_id', 'integer')

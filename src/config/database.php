@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'dbpass' => 'fabulous',
+    'dbpass' => env('DATABASE_PASS'),
     'dbuser' => 'timolinn',
     'dbhost' => 'localhost',
     'dbname' => 'golum'

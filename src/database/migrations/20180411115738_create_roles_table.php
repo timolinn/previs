@@ -29,5 +29,17 @@ class CreateRolesTable extends AbstractMigration
     public function change()
     {
 
+        $roles = $this->table('roles');
+
+        $roles->addColumn('title', 'string')
+                ->addColumn('permissions', 'json')
+                ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+                ->addColumn('updated_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+                ->create();
+
+        $users = $this->table('users');
+
+        $users->addForeignKey('roles_id', 'roles', 'id', ['delete' => 'NO_ACTION', 'update' => 'NO_ACTION'])
+                ->update();
     }
 }

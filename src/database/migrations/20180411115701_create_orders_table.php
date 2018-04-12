@@ -40,7 +40,7 @@ class CreateOrdersTable extends AbstractMigration
                ->create();
 
         $orders->addForeignKey('user_id', 'users', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
-               ->save();
+               ->update();
 
     }
 }

@@ -28,6 +28,20 @@ class CreateNotificationsTable extends AbstractMigration
      */
     public function change()
     {
+        $notifs = $this->table('notifications');
+
+
+        $notifs->addColumn('user_id', 'integer')
+                ->addColumn('message', 'string', ['limit' => 60])
+                ->addColumn('description', 'text', ['null' => true])
+                ->addColumn('link_url', 'string', ['null' => true])
+                ->addColumn('event', 'string', ['null' => true])
+                ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+                ->addColumn('updated_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+                ->create();
+
+        $notifs->addForeignKey('user_id', 'users', 'id', ['delete' => 'SET_NULL', 'update' => 'NO_ACTION'])
+                ->update();
 
     }
 }
