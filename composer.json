@@ -17,7 +17,8 @@
         "vlucas/phpdotenv": "^2.4",
         "pusher/pusher-php-server": "^3.0",
         "phpoffice/phpspreadsheet": "^1.2",
-        "mike182uk/cart": "^3.0"
+        "mike182uk/cart": "^3.0",
+        "adbario/php-dot-notation": "^2.0"
     },
     "autoload": {
         "psr-4": {

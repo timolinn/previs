@@ -22,16 +22,6 @@ class Connection
             'prefix'    => '',
         ]);
 
-
-        // Make this DB instance available globally via static methods
-        $capsule->setAsGlobal();
-
-        // Initailize ELoquent ORM
-        $capsule->bootEloquent();
-
-        // get connection
-        $capsule->getConnection();
-
         return $capsule;
     }
 }

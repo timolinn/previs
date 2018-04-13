@@ -27,12 +27,13 @@ class CreateItemsTable extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change()
+    public function up()
     {
         $exists = $this->hasTable('items');
         if ($exists) {
             $this->dropTable('items');
         }
+
         $items = $this->table('items');
 
         $items->addColumn('item_name', 'string', ['limit' => 255])
@@ -49,5 +50,13 @@ class CreateItemsTable extends AbstractMigration
                 ->addTimeStamps()
                 ->create();
 
+    }
+
+    public function down()
+    {
+        $exists = $this->hasTable('items');
+        if ($exists) {
+            $this->dropTable('items');
+        }
     }
 }

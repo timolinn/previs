@@ -27,8 +27,13 @@ class CreateUsersTable extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change()
+    public function up()
     {
+        $exists = $this->hasTable('users');
+        if ($exists) {
+            $this->dropTable('users');
+        }
+
         // creates new table
         $users = $this->table('users');
 
@@ -38,13 +43,21 @@ class CreateUsersTable extends AbstractMigration
               ->addColumn('password', 'string', ['limit' => 100])
               ->addColumn('user_name', 'string', ['limit' => 60])
               ->addColumn('email', 'string', ['limit' => 100])
-              ->addColumn('phone_number', 'string', ['limit' => 22])
+              ->addColumn('phone_number', 'string', ['limit' => 22, 'null' => true])
               ->addColumn('isBanned', 'integer', ['limit' => MysqlAdapter::INT_TINY, 'default' => 0])
               ->addColumn('role_id', 'integer')
-              ->addColumn('recurrent_order_id', 'integer')
-              ->addTimeStamps()
+              ->addColumn('recurrent_order_id', 'integer', ['null' => true])
               ->addIndex(['user_name', 'email'], ['unique' => true])
+              ->addTimeStamps()
               ->create();
 
+    }
+
+    public function down()
+    {
+        $exists = $this->hasTable('users');
+        if ($exists) {
+            $this->dropTable('users');
+        }
     }
 }

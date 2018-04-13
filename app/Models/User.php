@@ -48,7 +48,7 @@ class User extends Model
      */
     protected $fillable = [
         'user_name', 'first_name', 'last_name', 'email', 'isBanned', 'role_id',
-            'recurrent_order_id'
+            'recurrent_order_id', 'password'
     ];
 
     /**

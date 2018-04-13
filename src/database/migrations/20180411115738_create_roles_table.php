@@ -26,7 +26,7 @@ class CreateRolesTable extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change()
+    public function up()
     {
         $exists = $this->hasTable('roles');
         if ($exists) {
@@ -36,7 +36,7 @@ class CreateRolesTable extends AbstractMigration
         $roles = $this->table('roles');
 
         $roles->addColumn('title', 'string')
-                ->addColumn('permissions', 'json')
+                ->addColumn('permissions', 'json', ['null' => true])
                 ->addTimeStamps()
                 ->create();
 
@@ -44,5 +44,16 @@ class CreateRolesTable extends AbstractMigration
 
         $users->addForeignKey('role_id', 'roles', 'id', ['delete' => 'NO_ACTION', 'update' => 'NO_ACTION'])
                 ->update();
+    }
+
+    public function down()
+    {
+        $this->execute('SET FOREIGN_KEY_CHECKS=0');
+        $exists = $this->hasTable('roles');
+        if ($exists) {
+            $this->dropTable('roles');
+
+        }
+        $this->execute('SET FOREIGN_KEY_CHECKS=1');
     }
 }

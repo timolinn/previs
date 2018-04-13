@@ -27,7 +27,7 @@ class CreateOrdersTable extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change()
+    public function up()
     {
         $exists = $this->hasTable('orders');
         if ($exists) {
@@ -47,5 +47,13 @@ class CreateOrdersTable extends AbstractMigration
         $orders->addForeignKey('user_id', 'users', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
                ->update();
 
+    }
+
+    public function down()
+    {
+        $exists = $this->hasTable('orders');
+        if ($exists) {
+            $this->dropTable('orders');
+        }
     }
 }

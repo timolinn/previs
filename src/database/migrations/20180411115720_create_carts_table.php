@@ -26,7 +26,7 @@ class CreateCartsTable extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change()
+    public function up()
     {
         $exists = $this->hasTable('carts');
         if ($exists) {
@@ -46,5 +46,15 @@ class CreateCartsTable extends AbstractMigration
         $orders = $this->table('orders');
         $orders->addForeignKey('cart_id', 'carts', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
                 ->update();
+    }
+
+    public function down()
+    {
+        $this->execute('SET FOREIGN_KEY_CHECKS=0');
+        $exists = $this->hasTable('carts');
+        if ($exists) {
+            $this->dropTable('carts');
+        }
+        $this->execute('SET FOREIGN_KEY_CHECKS=1');
     }
 }

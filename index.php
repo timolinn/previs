@@ -10,12 +10,8 @@ $env = new Dotenv\Dotenv(__DIR__);
 $env->load();
 
 // Bootstrap app
-require 'src/bootstrap.php';
+require 'src/app/bootstrap.php';
 
-// $config = include 'src/config/database.php';
-
-$user = User::where('id', '=', 1);
-var_dump($user);exit;
-
-$results = DB::select('select * from users where id = ?', array(1));
-var_dump($results);
+if (str_is('hello', 'Hello')) {
+    echo "Yes!";
+}
