@@ -1,11 +1,17 @@
 <?php
 
-// Create this applications Instance
-// extending Illuminate\Container
+// Application basepath
+$basePath = realpath(__DIR__.'/../../');
 
-// but for now. Instantiante application with Cotainer
+// Load the environment variables from .env file
+$env = new Dotenv\Dotenv($basePath);
+$env->load();
+
+// A better way would be to Create this applications Instance
+// extending Illuminate\Container
+// but for now. Instantiate only Illuminate Cotainer
 // Instantiante IoC container
-$app = new Illuminate\Container\Container(realpath(__DIR__.'/../../'));
+$app = new Illuminate\Container\Container($basePath);
 
 $app->singleton('db', function() {
     return PDC\Connection::make((new PDC\Config('database'))->get());

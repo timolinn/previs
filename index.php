@@ -2,16 +2,18 @@
 
 require 'vendor/autoload.php';
 
-use Illuminate\Database\Capsule\Manager as DB;
-use App\Models\User;
-
-// Load the environment variables from .env file
-$env = new Dotenv\Dotenv(__DIR__);
-$env->load();
-
-// Bootstrap app
+// Boot up the app
 require 'src/app/bootstrap.php';
 
-if (str_is('hello', 'Hello')) {
-    echo "Yes!";
-}
+// initiate route
+// Router::load(new PDC\Request());
+
+with(new Illuminate\Events\EventServiceProvider($app))->register();
+with(new Illuminate\Routing\RoutingServiceProvider($app))->register();
+
+require $basePath . '/app/routes.php';
+
+$request = Illuminate\Http\Request::createFromGlobals();
+$response = $app->make('router')->dispatch($request);
+
+$response->send();
