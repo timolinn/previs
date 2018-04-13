@@ -17,7 +17,7 @@ environments:
     development:
         adapter: mysql
         host: localhost
-        name: golum
+        name: previs
         user: timolinn
         pass: fabulous
         port: 3306

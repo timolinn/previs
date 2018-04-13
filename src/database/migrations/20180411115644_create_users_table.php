@@ -42,8 +42,7 @@ class CreateUsersTable extends AbstractMigration
               ->addColumn('isBanned', 'integer', ['limit' => MysqlAdapter::INT_TINY, 'default' => 0])
               ->addColumn('role_id', 'integer')
               ->addColumn('recurrent_order_id', 'integer')
-              ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
-              ->addColumn('updated_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+              ->addTimeStamps()
               ->addIndex(['user_name', 'email'], ['unique' => true])
               ->create();
 

@@ -29,17 +29,24 @@ class CreateItemsTable extends AbstractMigration
      */
     public function change()
     {
+        $exists = $this->hasTable('items');
+        if ($exists) {
+            $this->dropTable('items');
+        }
         $items = $this->table('items');
 
         $items->addColumn('item_name', 'string', ['limit' => 255])
                 ->addColumn('number_in_stock', 'integer')
                 ->addColumn('item_category', 'string', ['null' => true])
-                ->addColumn('item_price', 'string')
+                ->addColumn('item_price', 'float')
+                ->addColumn('sku', 'string', ['null' => true])
+                ->addColumn('discount', 'float', ['null' => true])
+                ->addColumn('tax', 'string', ['null' => true])
                 ->addColumn('description', 'text', ['null' => true])
                 ->addColumn('image_path', 'string', ['null' => true])
                 ->addColumn('isAvaliable', 'integer', ['limit' => MysqlAdapter::INT_TINY])
-                ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
-                ->addColumn('updated_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+                ->addIndex(['item_name', 'sku'], ['unique' => true])
+                ->addTimeStamps()
                 ->create();
 
     }

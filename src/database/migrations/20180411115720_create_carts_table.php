@@ -28,6 +28,23 @@ class CreateCartsTable extends AbstractMigration
      */
     public function change()
     {
+        $exists = $this->hasTable('carts');
+        if ($exists) {
+            $this->dropTable('carts');
+        }
 
+        $carts = $this->table('carts');
+
+        $carts->addColumn('user_id', 'integer')
+                ->addColumn('cart', 'json')
+                ->addTimeStamps()
+                ->create();
+
+        $carts->addForeignKey('user_id', 'users', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
+               ->update();
+
+        $orders = $this->table('orders');
+        $orders->addForeignKey('cart_id', 'carts', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
+                ->update();
     }
 }

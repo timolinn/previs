@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "849495f10f59586564f2e0fa43a75264",
+    "content-hash": "3c4ce4d82a99417fe8c09ac0445868ab",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -974,6 +974,47 @@
                 "storage"
             ],
             "time": "2018-04-06T09:58:14+00:00"
+        },
+        {
+            "name": "mike182uk/cart",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mike182uk/cart.git",
+                "reference": "6243f5130971bf410374aeb844429a9fca5c7469"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mike182uk/cart/zipball/6243f5130971bf410374aeb844429a9fca5c7469",
+                "reference": "6243f5130971bf410374aeb844429a9fca5c7469",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.0",
+                "mockery/mockery": "~0.0",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cart\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael David Barrett",
+                    "email": "mike182uk@gmail.com"
+                }
+            ],
+            "description": "A flexible and modern shopping cart package",
+            "time": "2017-01-04T21:04:06+00:00"
         },
         {
             "name": "monolog/monolog",

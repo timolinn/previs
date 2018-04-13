@@ -29,17 +29,22 @@ class CreateOrdersTable extends AbstractMigration
      */
     public function change()
     {
+        $exists = $this->hasTable('orders');
+        if ($exists) {
+            $this->dropTable('orders');
+        }
+
         $orders = $this->table('orders');
 
         $orders->addColumn('cart_id', 'integer')
                ->addColumn('user_id', 'integer')
                ->addColumn('isActive', 'integer', ['limit' => MysqlAdapter::INT_TINY, 'default' => 1])
                ->addColumn('delivered', 'integer', ['limit' => MysqlAdapter::INT_TINY, 'default' => 0])
-               ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
-               ->addColumn('updated_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
+               ->addIndex(['cart_id', 'user_id'], ['unique' => true])
+               ->addTimeStamps()
                ->create();
 
-        $orders->addForeignKey('user_id', 'users', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
+        $orders->addForeignKey('user_id', 'users', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
                ->update();
 
     }
