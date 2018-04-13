@@ -12,6 +12,9 @@ $env->load();
 // but for now. Instantiate only Illuminate Cotainer
 // Instantiante IoC container
 $app = new Illuminate\Container\Container($basePath);
+$app->singleton('app', function() use ($app) {
+    return $app;
+});
 
 $app->singleton('db', function() {
     return PDC\Connection::make((new PDC\Config('database'))->get());

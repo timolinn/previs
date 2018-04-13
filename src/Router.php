@@ -5,13 +5,26 @@ namespace PDC;
 use Illuminate\Events\EventServiceProvider;
 use Illuminate\Routing\RoutingServiceProvider;
 use Illuminate\Container\Container;
+use PDC\Request;
+use Illuminate\Support\Facades\App;
 
 class Router
 {
 
-    public function load(Request $request)
+    public $response;
+
+    public static function load(Request $request)
     {
-        $this->registerProviders();
+        $router = new static;
+        static::registerProviders();
+
+        require realpath(__DIR__.'/../app/routes.php');
+
+        $request->initRequest();
+
+        $request->dispatch($router);
+
+        return $router;
     }
 
     /**
@@ -20,9 +33,15 @@ class Router
      * @param Illuminate\Container\Container $app
      * @return void
      */
-    public function registerProviders(Container $app)
+    public static function registerProviders()
     {
-        (new Illuminate\Events\EventServiceProvider($app))->register();
-        (new Illuminate\Routing\RoutingServiceProvider($app))->register();
+        $app = App::make('app');
+        (new \Illuminate\Events\EventServiceProvider($app))->register();
+        (new \Illuminate\Routing\RoutingServiceProvider($app))->register();
+    }
+
+    public function sendResponse()
+    {
+        $this->response->send();
     }
 }
