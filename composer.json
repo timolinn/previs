@@ -22,7 +22,10 @@
     "autoload": {
         "psr-4": {
             "PDC\\": "src/"
-        }
+        },
+        "classmap": [
+            "app"
+        ]
     },
     "require-dev": {
         "robmorgan/phinx": "^0.9.2"

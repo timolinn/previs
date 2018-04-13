@@ -1,17 +1,21 @@
 <?php
 
-// error_reporting(E_ALL);
-// ini_set('display_error', 1);
-// require 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
-with(new \Dotenv\Dotenv(__DIR__))->load();
+use Illuminate\Database\Capsule\Manager as DB;
+use App\Models\User;
+
+// Load the environment variables from .env file
+$env = new Dotenv\Dotenv(__DIR__);
+$env->load();
+
+// Bootstrap app
+require 'src/bootstrap.php';
 
 // $config = include 'src/config/database.php';
 
+$user = User::where('id', '=', 1);
+var_dump($user);exit;
 
-// $con = new \ArrayObject($config, \ArrayObject::ARRAY_AS_PROPS);
-// var_dump($config);
-
-// echo env('DATABASE_NAME').PHP_EOL;
-
-// echo date('h:i:s A');
+$results = DB::select('select * from users where id = ?', array(1));
+var_dump($results);

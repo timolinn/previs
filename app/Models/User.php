@@ -1,8 +1,10 @@
 <?php
 
-namespace PDC\Models;
+namespace App\Models;
 
-class User
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
 {
     /**
      * User Firstname
@@ -40,18 +42,35 @@ class User
     private $password;
 
     /**
+     * Mass Fillable properties
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_name', 'first_name', 'last_name', 'email', 'isBanned', 'role_id',
+            'recurrent_order_id'
+    ];
+
+    /**
+     * Hidden properties
+     *
+     * @var array
+     */
+    protected $hidden = ['password'];
+
+    /**
      * Constructor
      *
      * @param array $userData
      */
-    public function __construct(array $userData)
-    {
-        $this->firstName = $userData['firstName'];
-        $this->lastName = $userData['lastName'];
-        $this->userName = $userData['userName'];
-        $this->email = $userData['email'];
-        $this->password = $userData['password'];
-    }
+    // public function __construct(array $userData)
+    // {
+    //     $this->firstName = $userData['firstName'];
+    //     $this->lastName = $userData['lastName'];
+    //     $this->userName = $userData['userName'];
+    //     $this->email = $userData['email'];
+    //     $this->password = $userData['password'];
+    // }
 
     /**
      * Gets the authenticated user's username
@@ -60,7 +79,7 @@ class User
      */
     public function username(): string
     {
-        return $this->userName;
+        return $this->user_name;
     }
 
     /**
