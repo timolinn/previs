@@ -17,12 +17,8 @@ require 'vendor/autoload.php';
 // Boot up the app
 require 'src/app/bootstrap.php';
 
-
-// Enable Facades
-\Illuminate\Support\Facades\Facade::setFacadeApplication($app);
-
 // initiate route
 // Load and Process request
 // Send Response to the client
-PDC\Router::load(new PDC\Request())
+PDC\Router::load(app('request'))
             ->sendResponse();

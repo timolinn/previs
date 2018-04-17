@@ -38,8 +38,8 @@ class Router
     public static function registerProviders()
     {
         $app = App::make('app');
-        (new \Illuminate\Events\EventServiceProvider($app))->register();
-        (new \Illuminate\Routing\RoutingServiceProvider($app))->register();
+        (new EventServiceProvider($app))->register();
+        (new RoutingServiceProvider($app))->register();
     }
 
     public function sendResponse()

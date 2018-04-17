@@ -7,7 +7,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 class Connection
 {
 
-    public static function make($config)
+    public static function make(array $config)
     {
         $capsule = new Capsule;
 

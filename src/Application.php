@@ -4,6 +4,7 @@ namespace PDC;
 
 use Illuminate\Container\Container;
 use PDC\Config;
+use Illuminate\Support\Facades\App;
 
 /**
  * Class Application
@@ -27,10 +28,9 @@ class Application extends Container
 
         $this->registerBaseBindings();
 
-        // Register db connection to the container
-        $this->singleton('db', function() {
-            return PDC\Connection::make((new PDC\Config('database'))->get());
-        });
+        $this->enableFacades();
+
+        $this->registerServices();
 
     }
 
@@ -43,11 +43,40 @@ class Application extends Container
         $this->instance(Container::class, $this);
     }
 
+    public function registerServices()
+    {
+
+        // Bind configurations to IoC
+        $this->registerConfig();
+
+        // Bind Request Object
+        $this->bind('request', function() {
+            return new \PDC\Request();
+        });
+
+        // Register db connection to the container
+        $this->singleton('db', function() {
+            return \PDC\Connection::make($this->make('config')->get('database'));
+        });
+    }
+
+    public function registerConfig()
+    {
+        $this->bind('config', function() {
+            return new Config();
+        });
+    }
+
     public function loadEnvironmentVariables()
     {
         // Load the environment variables from .env file
-        $env = new Dotenv\Dotenv($this->basePath);
+        $env = new \Dotenv\Dotenv($this->basePath);
         $env->load();
+    }
+
+    public function enableFacades()
+    {
+        \Illuminate\Support\Facades\Facade::setFacadeApplication($this->make('app'));
     }
 
     public function setBasePath($basePath)
@@ -68,12 +97,12 @@ class Application extends Container
 
     public function basePath($path = '')
     {
-        return $this->basePath.DIRECTORY_SEPERATOR.($path ? DIRECTORY_SEPERATOR.$path : $path);
+        return $this->basePath.DIRECTORY_SEPARATOR.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
     public function configPath($path = '')
     {
-        return $this->basePath.DIRECTORY_SEPERATOR.'src'.DIRECTORY_SEPERATOR.'config'.($path ? DIRECTORY_SEPERATOR.$path : $path);
+        return $this->basePath.DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.'config'.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
 

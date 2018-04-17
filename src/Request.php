@@ -12,6 +12,7 @@ class Request
 
     public function initRequest()
     {
+        // scans php globals ($_POST, $_GET, $_GET etc)
         $this->request = IlluminateRequest::createFromGlobals();
     }
 

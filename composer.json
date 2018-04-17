@@ -28,7 +28,8 @@
         },
         "classmap": [
             "app"
-        ]
+        ],
+        "files": ["src/helpers.php"]
     },
     "require-dev": {
         "robmorgan/phinx": "^0.9.2"

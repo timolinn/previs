@@ -9,14 +9,12 @@ use Illuminate\Filesystem\Filesystem;
 class Config
 {
 
-    private $dirPath  = __DIR__;
-
     /**
      * Config folder name
      *
      * @var string
      */
-    protected $locale = 'config';
+    protected $locale = 'src/config';
 
     public $config;
 
@@ -31,10 +29,10 @@ class Config
      * @param string $configFileName
      * @return array|string
      */
-    public function get($configFileName = null): array
+    public function get($configFileName = ''): array
     {
         // Set the config filename
-        $configFileName = $configFileName != null ?: $this->config;
+        $configFileName = $configFileName != '' ? $configFileName : $this->config;
 
         // This scans through the locale and loads the config file
         // that ends with .php, Loads and returns the values in an array
@@ -46,6 +44,6 @@ class Config
 
     public function getBasePath()
     {
-        return realpath($this->dirPath);
+        return app('path.base');
     }
 }
