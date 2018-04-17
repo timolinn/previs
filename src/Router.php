@@ -22,6 +22,8 @@ class Router
 
         $request->initRequest();
 
+        // Dispatch the http request for handling
+        // Sets response on "Router's $response" property
         $request->dispatch($router);
 
         return $router;

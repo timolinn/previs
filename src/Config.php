@@ -11,15 +11,16 @@ class Config
 
     private $dirPath  = __DIR__;
 
-    protected $loader;
-
-    protected $filesys;
-
+    /**
+     * Config folder name
+     *
+     * @var string
+     */
     protected $locale = 'config';
 
     public $config;
 
-    public function __construct($config)
+    public function __construct($config = '')
     {
         $this->config = $config;
     }
@@ -32,7 +33,11 @@ class Config
      */
     public function get($configFileName = null): array
     {
+        // Set the config filename
         $configFileName = $configFileName != null ?: $this->config;
+
+        // This scans through the locale and loads the config file
+        // that ends with .php, Loads and returns the values in an array
         $config = (new FileLoader(new Filesystem, $this->getBasePath()))
                                 ->load($this->locale, $configFileName);
 
