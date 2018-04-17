@@ -9,11 +9,16 @@ if (! function_exists('renderView')) {
      */
     function renderView($view = null, $data = [])
     {
-        list($folder, $file) = explode('.', $view);
+        // suppress notice incase no dot was found in the string
+        @list($folder, $file) = explode('.', $view);
 
         extract($data);
+        // die($folder);
 
-        return require "app".DIRECTORY_SEPARATOR."views".DIRECTORY_SEPARATOR."{$folder}".DIRECTORY_SEPARATOR."{$file}.view.php";
+        // if the $view parameter is not separated with a dot, this means the view file
+        // is not in a folder. Therfore the folder name should be treated as the filename
+        require "app".DIRECTORY_SEPARATOR."views".DIRECTORY_SEPARATOR.
+                    ($file ? $folder.DIRECTORY_SEPARATOR.$file : $folder) .".view.php";
     }
 }
 
