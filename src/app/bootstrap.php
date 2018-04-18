@@ -14,3 +14,7 @@ $app = new \PDC\Application($basePath);
 
 // Initailize ELoquent ORM
 $app->make('db')->bootEloquent();
+
+
+$request = Request::capture();
+$app->instance('Illuminate\Http\Request', $request);

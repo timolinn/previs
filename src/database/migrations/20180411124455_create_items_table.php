@@ -46,7 +46,7 @@ class CreateItemsTable extends AbstractMigration
                 ->addColumn('description', 'text', ['null' => true])
                 ->addColumn('image_path', 'string', ['null' => true])
                 ->addColumn('isAvaliable', 'integer', ['limit' => MysqlAdapter::INT_TINY])
-                ->addIndex(['item_name', 'sku'], ['unique' => true])
+                ->addIndex(['item_name'], ['unique' => true])
                 ->addTimeStamps()
                 ->create();
 
