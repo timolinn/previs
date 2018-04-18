@@ -11,7 +11,7 @@
           <div class="pull-left info">
               <p>Timothy Onyiuke</p>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+              <a href="#"><i class="fa fa-fw fa-circle text-success"></i> Online</a>
           </div>
       </div>
 
@@ -20,7 +20,7 @@
           <div class="input-group">
               <input type="text" name="q" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
-    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-fw fa-search"></i>
     </button>
   </span>
           </div>
@@ -31,40 +31,30 @@
       <ul class="sidebar-menu" data-widget="tree">
           <li class="header">DASHBOARD</li>
           <!-- Optionally, you can add icons to the links -->
-          <!-- <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Dashboard</span></a></li> -->
+          <!-- <li class="active"><a href="#"><i class="fa fa-fw fa-link"></i> <span>Dashboard</span></a></li> -->
           <li class="treeview active">
-              <a href="#"><i class="fa fa-briefcase"></i> <span>My Business</span>
+              <a href="#"><i class="fa fa-briefcase"></i> <span>Manage Previs</span>
               <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                  <i class="fa fa-fw fa-angle-left pull-right"></i>
                 </span>
             </a>
               <ul class="treeview-menu">
-                  <li><a href="{{ route('admin.products')}}"><i class="fa fa-dot-circle-o"></i>Products</a></li>
-                  <li><a href="#"><i class="fa fa-dot-circle-o"></i>Customers</a></li>
-                  <li><a href="#"><i class="fa fa-dot-circle-o"></i>Transactions</a></li>
+                  <li><a href="{{ route('admin.products')}}"><i class="fa fa-fw fa-cutlery"></i>Manage Items</a></li>
+                  <li><a href="#"><i class="fa fa-fw fa-users"></i>Manage Customers</a></li>
+                  <li><a href="#"><i class="fa fa-fw fa-shopping-cart"></i>Manage Orders</a></li>
+                  <li><a href="#"><i class="fa fa-fw  fa-file-excel-o"></i>Export to Excel</a></li>
               </ul>
           </li>
-          <!-- <li class="treeview active">
-              <a href="#"><i class="fa fa-gears"></i> <span>Tools</span>
-              <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-              <ul class="treeview-menu">
-                  <li><a href="#"><i class="fa fa-dot-circle-o"></i>Tool 1</a></li>
-                  <li><a href="#"><i class="fa fa-dot-circle-o"></i>Tool 2</a></li>
-              </ul>
-          </li> -->
           <li class="treeview active">
-              <a href="#"><i class="fa fa-credit-card"></i> <span>Billing</span>
+              <a href="#"><i class="fa fa-user"></i> <span>Your Profile</span>
               <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                  <i class="fa fa-fw fa-angle-left pull-right"></i>
                 </span>
             </a>
               <ul class="treeview-menu">
-                  <li><a href="#"><i class="fa fa-dot-circle-o"></i>Recurring</a></li>
-                  <li><a href="#"><i class="fa fa-dot-circle-o"></i>Plans</a></li>
-                  <li><a href="#"><i class="fa fa-dot-circle-o"></i>Susbcriptions</a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-gear"></i>Settings</a></li>
+                  <li><a href="#"><i class="fa fa-fw fa-opencart"></i>My Orders</a></li>
+                  <li><a href="#"><i class="fa fa-fw fa-credit-card"></i>Accounts</a></li>
               </ul>
           </li>
       </ul>
