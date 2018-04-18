@@ -13,12 +13,27 @@ if (! function_exists('renderView')) {
         @list($folder, $file) = explode('.', $view);
 
         extract($data);
-        // die($folder);
+        // die(__DIR__);
 
         // if the $view parameter is not separated with a dot, this means the view file
         // is not in a folder. Therfore the folder name should be treated as the filename
-        require "app".DIRECTORY_SEPARATOR."views".DIRECTORY_SEPARATOR.
-                    ($file ? $folder.DIRECTORY_SEPARATOR.$file : $folder) .".view.php";
+        $filePath = realpath(
+            __DIR__ . "/../app".DIRECTORY_SEPARATOR."views".DIRECTORY_SEPARATOR.
+                   ($file ? $folder.DIRECTORY_SEPARATOR.$file : $folder) .".view.php"
+       );
+
+       if ($filePath) {
+           $require = require $filePath;
+
+           if (!$require) {
+               trigger_error($filePath . "Path does not exist.");
+           }
+           return;
+        }
+
+        throw new \Exception(($file ? $folder.DIRECTORY_SEPARATOR.$file : $folder).'.view.php is invalid');
+
+
     }
 }
 
@@ -31,5 +46,13 @@ if (!  function_exists('redirectTo')) {
     function redirectTo($path = '/')
     {
         header("Location: /{$path}");
+    }
+}
+
+if (! function_exists('assetload')) {
+
+    function assetload($path)
+    {
+        return "/../". $path;
     }
 }

@@ -58,6 +58,8 @@ class Application extends Container
         $this->singleton('db', function() {
             return \PDC\Connection::make($this->make('config')->get('database'));
         });
+
+
     }
 
     public function registerConfig()

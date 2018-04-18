@@ -11,14 +11,4 @@ if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
     return false;
 }
 
-
-require 'vendor/autoload.php';
-
-// Boot up the app
-require 'src/app/bootstrap.php';
-
-// initiate route
-// Load and Process request
-// Send Response to the client
-PDC\Router::load(app('request'))
-            ->sendResponse();
+require_once __DIR__.'/public/index.php';
