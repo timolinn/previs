@@ -36,7 +36,6 @@ class OrderRepository extends Repository implements RepositoryInterface
 
     public function create(array $data): bool
     {
-        dd($data);
         $newItem = $this->order->create($data);
 
         dd($newItem);

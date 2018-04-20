@@ -3,51 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Providers\AuthServiceProvider;
+use Illuminate\Support\Collection;
 
 class User extends Model
 {
-    /**
-     * User Firstname
-     *
-     * @var string
-     */
-    protected $firstName;
-
-    /**
-     * User Lastname
-     *
-     * @var string
-     */
-    protected $lastName;
-
-    /**
-     * User's unique username
-     *
-     * @var string
-     */
-    protected $userName;
-
-    /**
-     * User's email
-     *
-     * @var string
-     */
-    protected $email;
-
-    /**
-     * User's password
-     *
-     * @var string
-     */
-    private $password;
-
     /**
      * Mass Fillable properties
      *
      * @var array
      */
     protected $fillable = [
-        'user_name', 'first_name', 'last_name', 'email', 'isBanned', 'role_id',
+        'user_name', 'first_name', 'last_name', 'phone_number', 'email', 'isBanned', 'role_id',
             'recurrent_order_id', 'password'
     ];
 
@@ -57,20 +24,6 @@ class User extends Model
      * @var array
      */
     protected $hidden = ['password'];
-
-    /**
-     * Constructor
-     *
-     * @param array $userData
-     */
-    // public function __construct(array $userData)
-    // {
-    //     $this->firstName = $userData['firstName'];
-    //     $this->lastName = $userData['lastName'];
-    //     $this->userName = $userData['userName'];
-    //     $this->email = $userData['email'];
-    //     $this->password = $userData['password'];
-    // }
 
     /**
      * Gets the authenticated user's username
@@ -107,5 +60,18 @@ class User extends Model
     public function myCart(): array
     {
         return Cart::getContent();
+    }
+
+    public function attemptLogin(array $data)
+    {
+        try {
+
+            $authProvider = new AuthServiceProvider($this);
+            return $authProvider->login($data);
+
+        } catch(\App\Exceptions\InvalidLoginException $e) {
+
+            return $e->getMessage();
+        }
     }
 }

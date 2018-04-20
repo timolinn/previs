@@ -5,6 +5,7 @@ namespace PDC;
 use Illuminate\Container\Container;
 use PDC\Config;
 use Illuminate\Support\Facades\App;
+use Illuminate\Http\Request;
 
 /**
  * Class Application
@@ -30,6 +31,8 @@ class Application extends Container
 
         $this->enableFacades();
 
+        // $request = Request::capture();
+
         $this->registerServices();
 
     }
@@ -50,7 +53,7 @@ class Application extends Container
         $this->registerConfig();
 
         // Bind Request Object
-        $this->bind('request', function() {
+        $this->bind('pdc-request', function() {
             return new \PDC\Request();
         });
 
@@ -60,6 +63,7 @@ class Application extends Container
         });
 
 
+
     }
 
     public function registerConfig()
@@ -67,6 +71,21 @@ class Application extends Container
         $this->bind('config', function() {
             return new Config();
         });
+    }
+
+    public function resumeService()
+    {
+        $this->bind('authfactory', function() {
+            return new \Aura\Auth\AuthFactory($_COOKIE);
+        });
+
+        $this->bind('auth', function() {
+            return new \Aura\Auth\Auth((new \Aura\Auth\Session\Segment));
+        });
+
+        $adapter = app('connection')->getAuraPDOAdapter();
+        $resumeService = app('authfactory')->newResumeService();
+        $resumeService->resume(app('auth'));
     }
 
     public function loadEnvironmentVariables()

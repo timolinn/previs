@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Repositories\ItemRepository as ItRep;
 use Illuminate\Routing\Controller;
 use PDC\Request;
+use App\Validators\Validator;
 
 class ItemController extends Controller
 {
@@ -49,6 +50,9 @@ class ItemController extends Controller
     public function createNewItem(Request $pdcRequest)
     {
 
+
+
+        $item = $this->it->create($pdcRequest->request->all());
     }
 
     public function updateItem(Request $pdcRequest)

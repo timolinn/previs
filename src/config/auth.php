@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * This config is as required by the Advanced PHPAuth package https://github.com/PHPAuth/PHPAuth
+ * Using a Database is Recommended but this should do for now
+ *
+ */
+return [
+  'attack_mitigation_time' => '+30 minutes',
+  'attempts_before_ban' => '30',
+  'attempts_before_verify' =>  '5',
+  'bcrypt_cost' => '10',
+  'cookie_domain' => NULL,
+  'cookie_forget' => '+30 minutes',
+  'cookie_http' => '0',
+  'cookie_name' => 'phpauth_session_cookie',
+  'cookie_path' => '/',
+  'cookie_remember' => '+1 month',
+  'cookie_secure' => '0',
+  'cookie_renew' => '+5 minutes',
+  'emailmessage_suppress_activation' =>  '0',
+  'emailmessage_suppress_reset' => '0',
+  'mail_charset','UTF-8',
+  'password_min_score' =>  '0',
+  'site_activation_page' =>  'activate',
+  'site_email' =>  'no-reply@previs.com',
+  'site_key' =>  '**pdc**__dis__club__**pdc**',
+  'site_name' => 'Previs',
+  'site_password_reset_page' =>  'reset',
+  'site_timezone' => 'Africa/Lagos',
+  'site_url' =>  'http://localhost:8000',
+  'site_language' => 'en_GB',
+  'smtp' =>  '0',
+  'smtp_debug' =>  '0',
+  'smtp_auth' => '1',
+  'smtp_host' => 'smtp.gmail.com',
+  'smtp_password' => 'GODanswers**017',
+  'smtp_port' => '25',
+  'smtp_security' => 'tls',
+  'smtp_username' => 'fabrobocomx@gmail.com',
+  'table_attempts' =>  'phpauth_attempts',
+  'table_requests' =>  'phpauth_requests',
+  'table_sessions' =>  'phpauth_sessions',
+  'table_users' => 'users',
+  'table_emails_banned' => 'emails_banned',
+  'table_translations' => 'translations',
+  'verify_email_max_length' => '100',
+  'verify_email_min_length' => '5',
+  'verify_email_use_banlist' =>  '1',
+  'verify_password_min_length' =>  '4',
+  'request_key_expiration' => '+10 minutes',
+  'translation_source' => 'php',
+  'recaptcha_enabled' => 0,
+  'recaptcha_site_key' => '',
+  'recaptcha_secret_key' => ''
+];

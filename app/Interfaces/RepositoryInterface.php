@@ -13,7 +13,7 @@ interface RepositoryInterface
 
     public function get($id): Collection;
 
-    public function create(array $data): bool;
+    public function create(array $data): Collection;
 
     public function delete($id): bool;
 

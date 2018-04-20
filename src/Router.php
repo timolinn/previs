@@ -13,14 +13,14 @@ class Router
 
     public $response;
 
-    public static function load(Request $request)
+    public static function load(Request $request, Container $app)
     {
         $router = new static;
         static::registerProviders();
 
         require realpath(__DIR__.'/../app/routes.php');
 
-        $request->initRequest();
+        $request->initRequest($app);
 
         // Dispatch the http request for handling
         // Sets response on "Router's $response" property

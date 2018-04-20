@@ -45,7 +45,9 @@ if (!  function_exists('redirectTo')) {
      */
     function redirectTo($path = '/')
     {
-        header("Location: /{$path}");
+        // dd($path);
+        header("Location: ".env('APP_URL'). "/$path");
+        exit();
     }
 }
 

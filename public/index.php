@@ -20,5 +20,5 @@ require __DIR__ . '/../src/app/bootstrap.php';
 // initiate route
 // Load and Process request
 // Send Response to the client
-PDC\Router::load(app('request'))
-            ->sendResponse();
+PDC\Router::load(app('pdc-request'), app('app'))
+                        ->sendResponse();

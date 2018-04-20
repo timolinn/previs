@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Repositories\OrderRepository as OrdRep;
 use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
+use PDC\Request;
 
 class OrderController extends Controller
 {
@@ -46,14 +46,14 @@ class OrderController extends Controller
         return renderView('orders.edit');
     }
 
-    public function createNewOrder(Request $request)
+    public function createNewOrder(Request $pdcRequest)
     {
-        dd($request);
-        $new = $this->ord->create($request->all());
+        // dd($pdcRequest->request->all());
+        $new = $this->ord->create($pdcRequest->request->all());
 
     }
 
-    public function updateOrder(Request $request)
+    public function updateOrder(Request $pdcRequest)
     {
 
     }

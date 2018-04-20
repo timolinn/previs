@@ -16,5 +16,9 @@ $app = new \PDC\Application($basePath);
 $app->make('db')->bootEloquent();
 
 
-$request = Request::capture();
-$app->instance('Illuminate\Http\Request', $request);
+$app->bind('connection', function() {
+    return new \PDC\Connection;
+});
+
+// Restart session if exists or start a new one
+$app->resumeService();
