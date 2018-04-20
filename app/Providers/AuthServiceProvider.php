@@ -45,10 +45,14 @@ class AuthServiceProvider extends ServiceProvider
             'role_id' => 3
         ];
         // dd($params);
+        try {
+            $new = $this->guest->create($params);
+        } catch (\Exception $e) {
 
-        $new = $this->guest->create($params);
+            return $e->getMessage();
+        }
 
-        dd($new);
+        return $new;
     }
 
     public function login(array $data)

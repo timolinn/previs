@@ -58,3 +58,11 @@ if (! function_exists('assetload')) {
         return "/../". $path;
     }
 }
+
+if (! function_exists('pdcsession')) {
+
+    function pdcsession($key)
+    {
+        return \App\Services\Session::getFlash($key, 'message');
+    }
+}

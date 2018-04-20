@@ -16,12 +16,10 @@ class DashboardController extends Controller
 
     public function index()
     {
-        // dd(app('authfactory')->newInstance()->isValid());
-        dd(Auth::user());
-
+        // dd($_SESSION);
         if (Auth::check())
                 return renderView('admin.dashboard');
 
-        dd("Nay");
+        return redirectTo("auth/login");
     }
 }

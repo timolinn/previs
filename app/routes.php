@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'App\Controllers'], function() {
 
+    Route::group(['prefix' => 'admin'], function() {
+        Route::get('/{userId}/order-ready-notif/{orderId}', 'AdminController@sendOrderReadyNotif');
+    });
+
     Route::get('/dashboard', 'DashboardController@index');
 
     Route::get('/users', 'UserController@index');
@@ -24,7 +28,7 @@ Route::group(['namespace' => 'App\Controllers'], function() {
     Route::group(['prefix' => 'items'], function() {
         Route::get('/all', 'ItemController@getAllItems');
         Route::get('/create', 'ItemController@getCreate');
-        Route::get('/edit', 'ItemController@getEdit');
+        Route::get('/{id}/edit', 'ItemController@getEdit');
         Route::get('/{id}', 'ItemController@getItem');
         Route::post('/create', 'ItemController@createNewItem');
         Route::post('/update', 'ItemController@updateItem');

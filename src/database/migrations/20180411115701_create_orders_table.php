@@ -38,6 +38,7 @@ class CreateOrdersTable extends AbstractMigration
 
         $orders->addColumn('cart_id', 'integer')
                ->addColumn('user_id', 'integer')
+               ->addColumn('eta', 'string', ['null' => true])
                ->addColumn('isActive', 'integer', ['limit' => MysqlAdapter::INT_TINY, 'default' => 1])
                ->addColumn('delivered', 'integer', ['limit' => MysqlAdapter::INT_TINY, 'default' => 0])
                ->addIndex(['cart_id', 'user_id'], ['unique' => true])
@@ -47,13 +48,19 @@ class CreateOrdersTable extends AbstractMigration
         $orders->addForeignKey('user_id', 'users', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
                ->update();
 
+        $users = $this->table('users');
+        $users->addForeignKey('recurrent_order_id', 'orders', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
+               ->update();
+
     }
 
     public function down()
     {
+        $this->execute('SET FOREIGN_KEY_CHECKS=0');
         $exists = $this->hasTable('orders');
         if ($exists) {
             $this->dropTable('orders');
         }
+        $this->execute('SET FOREIGN_KEY_CHECKS=1');
     }
 }

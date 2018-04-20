@@ -7,6 +7,16 @@
         <div class="content-wrapper">
             <!-- Main content -->
             <section class="content container-fluid">
+            <?php if (pdcsession('error') != null) { ?>
+            <ul class="alert alert-danger" style="list-style-type: none">
+                      <li><?php echo pdcsession('error') ?></li>
+              </ul>
+            <?php } ?>
+            <?php if (pdcsession('error') != null) { ?>
+            <ul class="alert alert-success" style="list-style-type: none">
+                      <li><?php echo pdcsession('error') ?></li>
+              </ul>
+            <?php } ?>
 <div class="col-md-10 col-md-offset-1">
         <div class="box box-success">
   <div class="box-header with-border">
@@ -22,11 +32,11 @@
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">sku.</label> <em>Optional</em>
-        <input type="text" class="form-control" name="sku" id="exampleInputPassword1" placeholder="Short Product Description">
+        <input type="text" class="form-control" name="sku" placeholder="Short Product Description">
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Price per item (in naira)</label>
-        <input type="number" class="form-control" name="price" id="exampleInputPassword1" placeholder="Enter price of product">
+        <input type="number" class="form-control" name="price" placeholder="Enter price of product">
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Item Categories.</label> <em>Optional</em>
@@ -34,15 +44,15 @@
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Number of items in stock</label>
-        <input type="number" class="form-control" name="number_in_stock" id="exampleInputPassword1" placeholder="Enter number of products available">
+        <input type="number" class="form-control" name="number_in_stock" placeholder="Enter number of products available">
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Description.</label>
-        <input type="text" class="form-control" name="description" id="exampleInputPassword1" placeholder="Short Product Description">
+        <input type="text" class="form-control" name="description" placeholder="Short Product Description">
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Percent Discount.</label>
-        <input type="text" class="form-control" name="discount" id="exampleInputPassword1" placeholder="Short Product Description">
+        <input type="text" class="form-control" name="discount" placeholder="Short Product Description">
       </div>
 
       <div class="form-group">

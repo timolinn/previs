@@ -92,12 +92,12 @@ class User extends Model
 
     public function isAdmin()
     {
-        return $this->role()->title == 'super_admin' or 'admin';
+        return $this->role->title == 'super_admin' || $this->role->title == 'admin';
     }
 
     public function role()
     {
-        return $this->hasOne(Role::class, 'role_d');
+        return $this->belongsTo(Role::class, 'role_id');
     }
 
 

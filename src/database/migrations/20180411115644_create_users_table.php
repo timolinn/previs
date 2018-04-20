@@ -44,7 +44,7 @@ class CreateUsersTable extends AbstractMigration
               ->addColumn('user_name', 'string', ['limit' => 60])
               ->addColumn('email', 'string', ['limit' => 100])
               ->addColumn('phone_number', 'string', ['limit' => 22, 'null' => true])
-              ->addColumn('isactive', 'integer', ['limit' => MysqlAdapter::INT_TINY, 'default' => 0])
+              ->addColumn('isActive', 'integer', ['limit' => MysqlAdapter::INT_TINY, 'default' => 1])
               ->addColumn('role_id', 'integer')
               ->addColumn('recurrent_order_id', 'integer', ['null' => true])
               ->addIndex(['user_name', 'email'], ['unique' => true])

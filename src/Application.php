@@ -90,8 +90,11 @@ class Application extends Container
         $resumeService->resume(app('auth'));
 
         $this->bind('session', function() {
-            return new \Aura\Auth\Session\Segment('previs');
+            $sessionFactory = new \Aura\Session\SessionFactory;
+            $session = $sessionFactory->newInstance($_COOKIE);
+            return $session->getSegment('Aura\Session\Flash\Now');
         });
+
     }
 
     public function loadEnvironmentVariables()

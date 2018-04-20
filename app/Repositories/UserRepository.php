@@ -49,6 +49,8 @@ class UserRepository extends Repository implements RepositoryInterface
     {
         $newU = $this->provider->register($data);
 
+        if (!$newU instanceof User) return new Collection(['error' => $newU]);
+
         return $this->parse($newU->toArray());
     }
 
