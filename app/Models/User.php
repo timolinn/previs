@@ -74,4 +74,31 @@ class User extends Model
             return $e->getMessage();
         }
     }
+
+    public function make(Cart $cart)
+    {
+        $order = new Order;
+        $order->user_id = Auth::id();
+        $order->cart_id = $cart->id;
+
+        if ($order->save()) {
+            Notifier::notifyAdmin();
+            Notifier::orderConfirmation($this, $order);
+            return true;
+        }
+
+        return false;
+    }
+
+    public function isAdmin()
+    {
+        return $this->role()->title == 'super_admin' or 'admin';
+    }
+
+    public function role()
+    {
+        return $this->hasOne(Role::class, 'role_d');
+    }
+
+
 }

@@ -85,7 +85,13 @@ class Application extends Container
 
         $adapter = app('connection')->getAuraPDOAdapter();
         $resumeService = app('authfactory')->newResumeService();
+        // this checks if a session previously exists then doesn't start it if it doesn't.
+        // if it does it starts it and re populates it
         $resumeService->resume(app('auth'));
+
+        $this->bind('session', function() {
+            return new \Aura\Auth\Session\Segment('previs');
+        });
     }
 
     public function loadEnvironmentVariables()

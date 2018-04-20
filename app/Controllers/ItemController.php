@@ -49,9 +49,6 @@ class ItemController extends Controller
 
     public function createNewItem(Request $pdcRequest)
     {
-
-
-
         $item = $this->it->create($pdcRequest->request->all());
     }
 

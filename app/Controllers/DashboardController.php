@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Illuminate\Routing\Controller;
+use App\Models\Auth;
 
 class DashboardController extends Controller
 {
@@ -15,7 +16,12 @@ class DashboardController extends Controller
 
     public function index()
     {
-        dd(app('authfactory')->newInstance()->isValid());
-        return renderView('admin.dashboard');
+        // dd(app('authfactory')->newInstance()->isValid());
+        dd(Auth::user());
+
+        if (Auth::check())
+                return renderView('admin.dashboard');
+
+        dd("Nay");
     }
 }
