@@ -92,7 +92,7 @@ class Application extends Container
         $this->bind('session', function() {
             $sessionFactory = new \Aura\Session\SessionFactory;
             $session = $sessionFactory->newInstance($_COOKIE);
-            return $session->getSegment('Aura\Session\Flash\Now');
+            return $session->getSegment('App\Controllers\AdminController');
         });
 
     }

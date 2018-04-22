@@ -4,6 +4,10 @@ namespace App\Controllers;
 
 use Illuminate\Routing\Controller;
 use App\Models\Auth;
+use App\Services\Session;
+use App\Models\User;
+use App\Models\Item;
+use App\Models\Order;
 
 class DashboardController extends Controller
 {
@@ -16,9 +20,14 @@ class DashboardController extends Controller
 
     public function index()
     {
-        // dd($_SESSION);
-        if (Auth::check())
-                return renderView('admin.dashboard');
+
+        // Session::clear();
+        if (Auth::check()) {
+            $totalUsers = User::all()->count();
+            $totalItems = Item::all()->count();
+            $totalOrders = Order::all()->count();
+            return renderView('admin.dashboard', compact('totalUsers', 'totalItems', 'totalOrders'));
+        }
 
         return redirectTo("auth/login");
     }

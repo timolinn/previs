@@ -34,11 +34,28 @@ class OrderRepository extends Repository implements RepositoryInterface
         return $this->parse($order->toArray());
     }
 
-    public function create(array $data): bool
+    public function create(array $data): Collection
     {
-        $newItem = $this->order->create($data);
+        try {
 
-        dd($newItem);
+            $cart = new Cart;
+            $cart->user_id = Auth::id();
+            $cart->cart = json_encode($data['cart']);
+            $cart->save();
+
+
+            $this->order->user_id = Auth::id();
+            $this->order->cart_id = $cart->id;
+            // $this->order->eta = $data['eta'];
+
+            $this->order->save();
+
+            return $this->parse($this->order->toArray());
+
+        } catch(\Exception $e) {
+            return new Collection(['error' => $e->getMessage() ]);
+        }
+
     }
 
     public function update(array $data): Collection

@@ -37,6 +37,11 @@ class Auth
         return null;
     }
 
+    public static function username()
+    {
+        return app('authfactory')->newInstance()->getUserData()['uname'];
+    }
+
     /**
      * gets instance of logged in user
      *

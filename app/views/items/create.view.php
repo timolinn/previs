@@ -7,14 +7,14 @@
         <div class="content-wrapper">
             <!-- Main content -->
             <section class="content container-fluid">
-            <?php if (pdcsession('error') != null) { ?>
-            <ul class="alert alert-danger" style="list-style-type: none">
-                      <li><?php echo pdcsession('error') ?></li>
+            <?php if ($message = pdcsession('error')) : ?>
+                        <ul class="alert alert-danger" style="list-style-type: none">
+                      <li><?php echo $message ?></li>
               </ul>
-            <?php } ?>
-            <?php if (pdcsession('error') != null) { ?>
+            <?php endif; ?>
+            <?php if ($message = pdcsession('success')) { ?>
             <ul class="alert alert-success" style="list-style-type: none">
-                      <li><?php echo pdcsession('error') ?></li>
+                      <li><?php echo $message ?></li>
               </ul>
             <?php } ?>
 <div class="col-md-10 col-md-offset-1">

@@ -42,7 +42,7 @@ class AuthServiceProvider extends ServiceProvider
             'first_name' => $data['firstname'],
             'last_name' => $data['lastname'],
             'phone_number' => $data['phonenumber'],
-            'role_id' => 3
+            'role_id' => 1
         ];
         // dd($params);
         try {

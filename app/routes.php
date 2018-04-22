@@ -26,7 +26,7 @@ Route::group(['namespace' => 'App\Controllers'], function() {
     });
 
     Route::group(['prefix' => 'items'], function() {
-        Route::get('/all', 'ItemController@getAllItems');
+        Route::get('/', 'ItemController@getAllItems');
         Route::get('/create', 'ItemController@getCreate');
         Route::get('/{id}/edit', 'ItemController@getEdit');
         Route::get('/{id}', 'ItemController@getItem');
@@ -36,7 +36,7 @@ Route::group(['namespace' => 'App\Controllers'], function() {
     });
 
     Route::group(['prefix' => 'orders'], function() {
-        Route::get('/all', 'OrderController@getAllOrders');
+        Route::get('/', 'OrderController@getAllOrders');
         Route::get('/create', 'OrderController@getCreate');
         Route::get('/edit', 'OrderController@getEdit');
         Route::get('/{id}', 'OrderController@getOrder');
@@ -45,5 +45,16 @@ Route::group(['namespace' => 'App\Controllers'], function() {
         Route::post('/delete', 'OrderController@deleteOrder');
     });
 
+    Route::group(['prefix' => 'carts'], function() {
+        Route::get('/', 'CartController@getAllOrders');
+        Route::get('/{item}/{quantity}/create', 'CartController@create');
+        Route::get('/edit', 'CartController@getEdit');
+        Route::get('/{id}', 'CartController@getOrder');
+        Route::post('/create', 'CartController@createNewOrder');
+        Route::post('/update', 'CartController@updateOrder');
+        Route::post('/delete', 'CartController@deleteOrder');
+    });
+
+    Route::get('/send', 'AdminController@send');
 
 });

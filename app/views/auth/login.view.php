@@ -39,6 +39,16 @@
       <div class="login-logo">
         <a href="/"><b>Previs</b></a>
       </div>
+      <?php if ($message = pdcsession('error')) : ?>
+                        <ul class="alert alert-danger" style="list-style-type: none">
+                      <li><?php echo $message ?></li>
+              </ul>
+            <?php endif; ?>
+            <?php if ($message = pdcsession('success')) { ?>
+            <ul class="alert alert-success" style="list-style-type: none">
+                      <li><?php echo $message ?></li>
+              </ul>
+            <?php } ?>
 <div class="login-box-body">
   <p class="login-box-msg">Sign In</p>
 

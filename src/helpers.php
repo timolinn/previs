@@ -63,6 +63,7 @@ if (! function_exists('pdcsession')) {
 
     function pdcsession($key)
     {
-        return \App\Services\Session::getFlash($key, 'message');
+        // return $_SESSION['Aura\Session\Flash\Now']['App\Controllers\AdminController'][$key];
+        return \App\Services\Session::__getFlash($key, 'message');
     }
 }

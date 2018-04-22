@@ -25,7 +25,9 @@ class ItemController extends Controller
 
     public function getAllItems()
     {
-        return $this->it->getAll();
+        $items = $this->it->getAll();
+
+        return renderView('items.index', compact('items'));
     }
 
     public function getItem($id)
@@ -55,13 +57,15 @@ class ItemController extends Controller
         $item = $this->it->create($pdcRequest->request->all());
 
         if (arraY_key_exists('error', $item->toArray())) {
-            Session::error("Unable to create Item. Please Try again");
-            dd($item->get('error'));
+            Session::error($item->get('error'));
+            // dd($item->get('error'));
+            return redirectTo('items/create');
         }
 
         $itemId = $item->get('id');
+        Session::success('New Item Created.');
 
-        return redirectTo("items/$itemId");
+        return redirectTo("items");
     }
 
     public function updateItem(Request $pdcRequest)
@@ -69,8 +73,8 @@ class ItemController extends Controller
         $item = $this->it->update($pdcRequest->request->all());
 
         if (arraY_key_exists('error', $item->toArray())) {
-            Session::error("Unable to create Item. Please Try again");
-            dd($item->get('error'));
+            Session::error("Unable to update Item. Please Try again");
+            return redirectTo("items/$pdcRequest->i_id");
         }
 
         $itemId = $item->get('id');

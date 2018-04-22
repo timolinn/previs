@@ -39,6 +39,16 @@
       <div class="login-logo">
         <a href="/"><b>Previs</b></a>
       </div>
+      <?php if ($message = pdcsession('error')) { ?>
+            <ul class="alert alert-danger" style="list-style-type: none">
+                      <li><?= $message ?></li>
+              </ul>
+            <?php } ?>
+            <?php if ($message = pdcsession('success')) { ?>
+            <ul class="alert alert-success" style="list-style-type: none">
+                      <li><?= $message ?></li>
+              </ul>
+            <?php } ?>
 <div class="login-box-body">
   <p class="login-box-msg">Create Account</p>
 
@@ -57,7 +67,7 @@
     </div>
     <div class="form-group has-feedback">
       <input type="email" class="form-control" name="email" placeholder="Email">
-      <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
     </div>
     <div class="form-group has-feedback">
       <input type="text" class="form-control" name="phonenumber" placeholder="Phone Number">

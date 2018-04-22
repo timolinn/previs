@@ -6,10 +6,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
           <div class="pull-left image">
-              <img src="<?= assetload('vendor/dist/img/user2-160x160.jpg') ?>" class="img-circle" alt="User Image">
+              <img src="<?= assetload('vendor/dist/img/avatar.png') ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-              <p>Timothy Onyiuke</p>
+              <p><?= $user->fullname(); ?></p>
               <!-- Status -->
               <a href="#"><i class="fa fa-fw fa-circle text-success"></i> Online</a>
           </div>
@@ -39,10 +39,10 @@
                 </span>
             </a>
               <ul class="treeview-menu">
-                  <li><a href="{{ route('admin.products')}}"><i class="fa fa-fw fa-cutlery"></i>Manage Items</a></li>
-                  <li><a href="#"><i class="fa fa-fw fa-users"></i>Manage Customers</a></li>
-                  <li><a href="#"><i class="fa fa-fw fa-shopping-cart"></i>Manage Orders</a></li>
-                  <li><a href="#"><i class="fa fa-fw  fa-file-excel-o"></i>Export to Excel</a></li>
+                  <li><a href="/items"><i class="fa fa-fw fa-cutlery"></i>Manage Items</a></li>
+                  <li><a href="/users"><i class="fa fa-fw fa-users"></i>Manage Customers</a></li>
+                  <li><a href="/orders"><i class="fa fa-fw fa-shopping-cart"></i>Manage Orders</a></li>
+                  <li><a href="/excel"><i class="fa fa-fw  fa-file-excel-o"></i>Export to Excel</a></li>
               </ul>
           </li>
           <li class="treeview active">
@@ -52,9 +52,9 @@
                 </span>
             </a>
               <ul class="treeview-menu">
+                  <li><a href="/users/<?= $user->user_name; ?>"><i class="fa fa-fw fa-user"></i>My Profile</a></li>
+                  <li><a href="/orders/<?= $user->id; ?>"><i class="fa fa-fw fa-opencart"></i>My Orders</a></li>
                     <li><a href="#"><i class="fa fa-fw fa-gear"></i>Settings</a></li>
-                  <li><a href="#"><i class="fa fa-fw fa-opencart"></i>My Orders</a></li>
-                  <li><a href="#"><i class="fa fa-fw fa-credit-card"></i>Accounts</a></li>
               </ul>
           </li>
       </ul>

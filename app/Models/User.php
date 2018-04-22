@@ -42,7 +42,7 @@ class User extends Model
      */
     public function fullname(): string
     {
-        return $this->firstName . ' ' . $this->lastName;
+        return $this->first_name . ' ' . $this->last_name;
     }
 
     /**

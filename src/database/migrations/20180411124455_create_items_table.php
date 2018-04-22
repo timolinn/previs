@@ -39,7 +39,7 @@ class CreateItemsTable extends AbstractMigration
         $items->addColumn('item_name', 'string', ['limit' => 255])
                 ->addColumn('number_in_stock', 'integer')
                 ->addColumn('item_category', 'string', ['null' => true])
-                ->addColumn('item_price', 'double')
+                ->addColumn('item_price', 'float')
                 ->addColumn('sku', 'string', ['null' => true])
                 ->addColumn('discount', 'string', ['null' => true])
                 ->addColumn('tax', 'string', ['null' => true])

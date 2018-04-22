@@ -20,7 +20,7 @@ class Session
         return app('session')->setFlash($key, $val);
     }
 
-    public static function getFlash($key)
+    public static function __getFlash($key)
     {
         // app('session')->clear();
         return app('session')->getFlash($key);
@@ -39,5 +39,10 @@ class Session
     public static function error($message)
     {
         return app('session')->setFlash('error', $message);
+    }
+
+    public static function clear()
+    {
+        return app('session')->clear();
     }
 }
