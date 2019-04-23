@@ -1,2 +1,2 @@
-# previs
-Previs Discount Club (PDC)
+# Food Ordering app
+Documentation coming soon.
